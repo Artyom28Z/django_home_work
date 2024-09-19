@@ -3,7 +3,7 @@ from catalog.apps import CatalogConfig
 from catalog.views import home, contacts
 
 
-name_app = CatalogConfig.name
+app_name = CatalogConfig.name
 
 
 urlpatterns = [
