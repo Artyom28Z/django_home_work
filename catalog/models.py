@@ -25,8 +25,8 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания продукта в базе данных')
     updated_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата последнего изменения продукта в БД',
                                       **NULLABLE)
-    manufactured_at = models.DateTimeField(verbose_name='Дата производства продукта',
-                                           help_text='Введите дату производства продукта', **NULLABLE)
+    #manufactured_at = models.DateTimeField(verbose_name='Дата производства продукта',
+                                           #help_text='Введите дату производства продукта', **NULLABLE)
 
     class Meta:
         verbose_name = 'Продукт'
