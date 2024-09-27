@@ -82,7 +82,10 @@ DATABASES = {
         'PASSWORD': 'Sp2895',
         'HOST': 'localhost',
         'PORT': '5432',
-        'ENCODING': 'utf8'
+        'ENCODING': 'utf8',
+        'OPTIONS': {
+            "client_encoding": "utf8",
+        }
     }
 }
 
