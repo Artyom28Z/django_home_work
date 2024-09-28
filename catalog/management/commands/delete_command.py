@@ -42,7 +42,7 @@ class Command(BaseCommand):
         for product in Command.json_read_products():
             product_for_create.append(
                 product(id=product["pk"], name=product["fields"]["name"], description=product["fields"]["description"],
-                        photo=product["fields"]["photo"], category=Category.objects.get(pk=product["fields"]["pk"]),
+                        photo=product["fields"]["photo"], category=Category.objects.get(product["fields"]["category"]),
                         price=product["fields"]["price"], created_at=product["fields"]["created_at"],
                         updated_at=product["fields"]["updated_at"])
             )
