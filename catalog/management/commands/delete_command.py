@@ -10,8 +10,9 @@ class Command(BaseCommand):
             json_file = json.load(f)
             categories_list = []
             for i in json_file:
-                if 'model' == "catalog.category":
-                    categories_list.append(i)
+                for k, v in json_file.items():
+                    if v == "catalog.category":
+                        categories_list.append(i)
             return categories_list
 
     @staticmethod
@@ -20,14 +21,14 @@ class Command(BaseCommand):
             json_file = json.load(f)
             products_list = []
             for i in json_file:
-                if 'model' == "catalog.product":
-                    products_list.append(i)
+                for k, v in json_file.items():
+                    if v == "catalog.product":
+                        products_list.append(i)
             return products_list
 
-
     def handle(self, *args, **options):
-        Product.objects().all().delete()
-        Category.objects().all().delete()
+        Product.objects.all().delete()
+        Category.objects.all().delete()
 
         product_for_create = []
         category_for_create = []
