@@ -1,3 +1,4 @@
+from unidecode import unidecode
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.utils.text import slugify
@@ -32,15 +33,10 @@ class ArticleDetailView(DetailView):
 class ArticleCreateView(CreateView):
     model = Article
     fields = ("title", "content", "photo", "is_active")
-    prepopulated_fields = {"slug": ("title",)}
     success_url = reverse_lazy("articles:article_list")
 
     def form_valid(self, form):
-        if form.is_valid():
-            new_blog = form.save()
-            new_blog.slug = slugify(form) #преобразование заголовка в slug с помощью функции slugify(title)
-            new_blog.save()
-
+        form.instance.slug = slugify(unidecode(form.instance.title))
         return super().form_valid(form)
 
 

@@ -24,8 +24,3 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("articles.urls", namespace="articles")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-
-# <a class="btn btn-primary" href="{% url 'article:article_detail' %}" role="button">Посмотреть</a>
-#                   <a class="btn btn-success" href="{% url 'article:article_update' %}" role="button">Редактировать</a>
-#                   <a class="btn btn-danger" href="{% url 'article:article_delete' %}" role="button">Удалить</a>
