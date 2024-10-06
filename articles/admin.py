@@ -11,4 +11,3 @@ class ArticleAdmin(admin.ModelAdmin):
     list_filter = ("is_active", "title", "created_at", "view_counter")
     search_fields = ("title", "content", "slug")
     prepopulated_fields = {"slug": ("title",)}
-

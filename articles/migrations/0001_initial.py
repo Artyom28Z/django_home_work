@@ -7,26 +7,79 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Article',
+            name="Article",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(help_text='Введите заголовок статьи', max_length=50, verbose_name='Заголовок')),
-                ('content', models.TextField(help_text='Введите текст статьи', verbose_name='Статья')),
-                ('photo', models.ImageField(blank=True, help_text='Загрузите фото для статьи', null=True, upload_to='articles_/photo', verbose_name='Фото')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Дата создания статьи в базе данных')),
-                ('view_counter', models.PositiveIntegerField(default=0, help_text='Подсчёт просмотров', verbose_name='Счётчик просмотров')),
-                ('is_active', models.BooleanField(default=True, help_text='Укажите опубликовать или нет', verbose_name='Опубликовано')),
-                ('slug', models.SlugField(blank=True, max_length=255, unique=True, verbose_name='URL')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "title",
+                    models.CharField(
+                        help_text="Введите заголовок статьи",
+                        max_length=50,
+                        verbose_name="Заголовок",
+                    ),
+                ),
+                (
+                    "content",
+                    models.TextField(
+                        help_text="Введите текст статьи", verbose_name="Статья"
+                    ),
+                ),
+                (
+                    "photo",
+                    models.ImageField(
+                        blank=True,
+                        help_text="Загрузите фото для статьи",
+                        null=True,
+                        upload_to="articles_/photo",
+                        verbose_name="Фото",
+                    ),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(
+                        auto_now_add=True,
+                        verbose_name="Дата создания статьи в базе данных",
+                    ),
+                ),
+                (
+                    "view_counter",
+                    models.PositiveIntegerField(
+                        default=0,
+                        help_text="Подсчёт просмотров",
+                        verbose_name="Счётчик просмотров",
+                    ),
+                ),
+                (
+                    "is_active",
+                    models.BooleanField(
+                        default=True,
+                        help_text="Укажите опубликовать или нет",
+                        verbose_name="Опубликовано",
+                    ),
+                ),
+                (
+                    "slug",
+                    models.SlugField(
+                        blank=True, max_length=255, unique=True, verbose_name="URL"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Статья',
-                'verbose_name_plural': 'Статьи',
-                'ordering': ['title', 'created_at', 'view_counter'],
+                "verbose_name": "Статья",
+                "verbose_name_plural": "Статьи",
+                "ordering": ["title", "created_at", "view_counter"],
             },
         ),
     ]

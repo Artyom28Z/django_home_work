@@ -1,11 +1,19 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.utils.text import slugify
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView,
+)
 
 from articles.models import Article
 
 
 # Create your views here.
+
 
 class ArticleListView(ListView):
     model = Article
@@ -23,22 +31,31 @@ class ArticleDetailView(DetailView):
 
 class ArticleCreateView(CreateView):
     model = Article
-    fields = ('title', 'content', 'photo', 'is_active')
-    success_url = reverse_lazy('articles:article_list')
+    fields = ("title", "content", "photo", "is_active")
+    prepopulated_fields = {"slug": ("title",)}
+    success_url = reverse_lazy("articles:article_list")
+
+    def form_valid(self, form):
+        if form.is_valid():
+            new_blog = form.save()
+            new_blog.slug = slugify(form) #преобразование заголовка в slug с помощью функции slugify(title)
+            new_blog.save()
+
+        return super().form_valid(form)
 
 
 class ArticleUpdateView(UpdateView):
     model = Article
-    fields = ('title', 'content', 'photo', 'is_active')
-    success_url = reverse_lazy('articles:article_list')
+    fields = ("title", "content", "photo", "is_active")
+    success_url = reverse_lazy("articles:article_list")
 
     def get_success_url(self):
-        return reverse('articles:article_detail', args=[self.kwargs.get('slug')])
+        return reverse("articles:article_detail", kwargs=[self.kwargs.get("slug")])
 
 
 class ArticleDeleteView(DeleteView):
     model = Article
-    success_url = reverse_lazy('articles:article_list')
+    success_url = reverse_lazy("articles:article_list")
 
 
 def contacts(request):

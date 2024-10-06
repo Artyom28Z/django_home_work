@@ -3,12 +3,12 @@
 {% block content %}
 <div class="album py-5 bg-body-tertiary">
     <div class="container">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col">
+      <div class="row">
+        <div class="col-12">
           <div class="card shadow-sm">
             <img src="{{ article.photo | media_filter }}">
-            <div class="card-body">
-              <p class="card-title">{{ object.title }}<p>
+            <div class="card-body mt-4 mb-4">
+              <h2 class="card-title">{{ object.title }}</h2>
               <p class="card-text">Написана: {{ object.created_at }}<p>
               <p class="card-text">
                 {% if object.is_active %}
